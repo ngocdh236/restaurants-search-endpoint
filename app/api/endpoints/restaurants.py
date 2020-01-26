@@ -10,7 +10,7 @@ from app.utils.json import get_data_from_json_file
 router = APIRouter()
 
 
-@router.get("/search")
+@router.get("/search/")
 def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
     """
     /restaurants/search/
