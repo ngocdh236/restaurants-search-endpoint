@@ -1,0 +1,3 @@
+GOOGLE_MAPS_KEY = "AIzaSyDN8LXzldXjbZakCCyvUAnJv_bf4s2CgiE"
+
+API_STRING = "/api"

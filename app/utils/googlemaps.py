@@ -1,5 +1,7 @@
 import googlemaps
 
+from app.core.config import GOOGLE_MAPS_KEY
+
 
 def get_distance(query_location, restaurant_location):
     """
@@ -10,7 +12,7 @@ def get_distance(query_location, restaurant_location):
     :return float:
     """
 
-    gmaps = googlemaps.Client(key='AIzaSyDN8LXzldXjbZakCCyvUAnJv_bf4s2CgiE')
+    gmaps = googlemaps.Client(key=GOOGLE_MAPS_KEY)
     distance_matrix = gmaps.distance_matrix(
         origins=query_location, destinations=restaurant_location)
 
