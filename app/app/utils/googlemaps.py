@@ -3,18 +3,21 @@ import googlemaps
 from app.core.config import GOOGLE_MAPS_KEY
 
 
-def get_distance(query_location, restaurant_location):
+def get_distance(origin, destination):
     """
-    Return distance between 2 locations on Google maps in kilometers 
+    Get distance between 2 locations on Google maps using coordinates
 
-    :param tuple query_location: lat/lon of query location
-    :param tuple restaurant_location: lat/lon of restaurant location
-    :return float:
+    Args:
+        origin (tuple): lat/lon of query location
+        destination (tuple): lat/lon of restaurant location
+
+    Returns:
+        distance in kilometers
     """
 
     gmaps = googlemaps.Client(key=GOOGLE_MAPS_KEY)
     distance_matrix = gmaps.distance_matrix(
-        origins=query_location, destinations=restaurant_location)
+        origins=origin, destinations=destination)
 
     if distance_matrix["status"] == "OK":
         first_element = distance_matrix["rows"][0]["elements"][0]

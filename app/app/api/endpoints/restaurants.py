@@ -5,7 +5,8 @@ from fastapi import APIRouter, Query
 from starlette.responses import JSONResponse
 
 from app.utils.googlemaps import get_distance
-from app.utils.json import get_data_from_json_file
+from app.utils.file import get_data_from_json_file
+from app.utils.string import is_string_included
 
 router = APIRouter()
 
@@ -33,18 +34,15 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
     results = []
 
     for restaurant in restaurants:
-        query_strings = q.lower().split()
+        query_strings = q.split()
+        compare_strings = [restaurant["name"],
+                           restaurant["description"]] + restaurant["tags"]
         matched_strings = 0
 
         for q_string in query_strings:
-            if q_string in restaurant["name"].lower():
-                matched_strings += 1
-
-            if q_string in restaurant["description"].lower():
-                matched_strings += 1
-
-            if q_string in [tag.lower() for tag in restaurant["tags"]]:
-                matched_strings += 1
+            for c_string in compare_strings:
+                if is_string_included(q_string, c_string):
+                    matched_strings += 1
 
         if matched_strings > 0:
             restaurant_lon, restaurant_lat = restaurant["location"]
