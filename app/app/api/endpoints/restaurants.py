@@ -2,7 +2,6 @@ import json
 import operator
 
 from fastapi import APIRouter, Query
-from starlette.responses import JSONResponse
 
 from app.utils.googlemaps import get_distance
 from app.utils.file import get_data_from_json_file
@@ -16,7 +15,7 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
     """
     /restaurants/search/
 
-    Search for restaurants that match given query string and 
+    Search for restaurants that match given query string and
     are closer than 3 kilometers from given coordinates
 
     Args:
@@ -24,19 +23,18 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
         lon (float): The longitude
         q (str): The query string
 
-    Returns: 
-        A Starlette JSONResponse
     """
 
     restaurants = get_data_from_json_file(
         path='restaurants.json')["restaurants"]
 
     results = []
+    query_strings = q.split()
 
     for restaurant in restaurants:
-        query_strings = q.split()
-        compare_strings = [restaurant["name"],
-                           restaurant["description"]] + restaurant["tags"]
+        compare_strings = [restaurant["name"], restaurant["description"]] \
+            + restaurant["tags"]
+
         matched_strings = 0
 
         for q_string in query_strings:
@@ -59,5 +57,4 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
     results = sorted(results, key=operator.itemgetter(
         "matched_strings", "distance"))
 
-    return JSONResponse(status_code=200, content=[result["restaurant"]
-                                                  for result in results])
+    return [result["restaurant"]for result in results]
