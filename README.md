@@ -40,7 +40,7 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
     `pytest`
 
-## Frameworks && Libraries
+## Frameworks & Libraries
 
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [googlemaps](https://github.com/googlemaps/google-maps-services-python)
