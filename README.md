@@ -31,7 +31,7 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 1. Go to 'app' folder in the project directory
 
-2. Run app in local environment (some tests require app to run):
+2. Run app in local environment if not already running (some tests require app to run):
 
 `uvicorn main:app --reload`
 
