@@ -1,9 +1,8 @@
 import requests
 
-from app.core.config import API_STRING
 from app.utils.googlemaps import get_distance
 
-server_api = "http://127.0.0.1:8000"
+RESTAURANTS_STR = f"http://127.0.0.1:8000/api/restaurants"
 
 
 def test_search():
@@ -11,8 +10,7 @@ def test_search():
     q_lon = 24.93147
 
     r = requests.get(
-        f"{server_api}{API_STRING}/restaurants/search/"
-        f"?q=sushi&lat={q_lat}&lon={q_lon}"
+        f"{RESTAURANTS_STR}/search/?q=sushi&lat={q_lat}&lon={q_lon}"
     )
 
     data = r.json()
@@ -26,7 +24,7 @@ def test_search():
 
 def test_search_fail():
     r = requests.get(
-        f"{server_api}{API_STRING}/restaurants/search/?lat=test"
+        f"{RESTAURANTS_STR}/search/?lat=test"
     )
 
     assert r.status_code == 422

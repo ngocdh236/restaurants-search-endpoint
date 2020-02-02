@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.endpoints import restaurants
+from app.api import restaurants
 
 api_router = APIRouter()
 

@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 
-from app.core.config import API_STRING
 from app.api import api_router
 
 app = FastAPI()
 
-app.include_router(api_router, prefix=API_STRING)
+app.include_router(api_router, prefix="/api")

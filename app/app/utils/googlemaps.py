@@ -1,6 +1,6 @@
 import googlemaps
 
-from app.core.config import GOOGLE_MAPS_KEY
+from app.common.config import GOOGLE_MAPS_KEY
 
 
 def get_distance(origin, destination):

@@ -3,8 +3,8 @@ import operator
 
 from fastapi import APIRouter, Query
 
-from app.utils.googlemaps import get_distance
 from app.utils.file import get_data_from_json_file
+from app.utils.googlemaps import get_distance
 from app.utils.string import is_string_included
 
 router = APIRouter()

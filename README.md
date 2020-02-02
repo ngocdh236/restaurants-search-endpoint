@@ -1,21 +1,39 @@
 ## Installation
 
-1. In the project directory, you can run:
+(Please skip step 1 and 3 if project directory already contains venv folder)
+
+1. Go to the project directory, create a virtual environment name 'venv':
+
+`python3 -m venv venv`
+
+2. Activate the virtual environment:
 
 `source venv/bin/activate`
 
-2. Go to folder 'app' inside project directory, you can run:
+3. Install dependencies:
+
+`pip install -r requirements.txt`
+
+4. Go to 'app' folder in the project directory
+
+5. Run app in local environment:
 
 `uvicorn main:app --reload`
 
-3. You can now search for restaurants by making API call to http://127.0.0.1:8000/api
+6. App is now running at http://127.0.0.1:8000
 
-Example:
-http://127.0.0.1:8000/api/restaurants/search/?q=hanko%20sushi&lat=60.17045&lon=24.93147
+Request URL example for restaurants search:
+http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 ## Testing
 
-- Go to folder 'app' inside project directory, you can run:
+1. Go to 'app' folder in the project directory
+
+2. Run app in local environment (some tests require app to run):
+
+`uvicorn main:app --reload`
+
+3. Run tests:
 
 `pytest`
 
