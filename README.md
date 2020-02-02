@@ -1,6 +1,8 @@
+# An endpoint for restaurants search
+
 ## Installation
 
-(Please skip step 1 and 3 if project directory already contains venv folder)
+(Please skip step 1 and 3 if project directory already contains folder 'venv')
 
 1. Go to the project directory, create a virtual environment name 'venv':
 
@@ -40,9 +42,9 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 ## Frameworks && Libraries
 
 - [FastAPI](https://fastapi.tiangolo.com/)
-- [Uvicorn](https://www.uvicorn.org/)
-- [pytest](https://docs.pytest.org/en/latest/)
 - [googlemaps](https://github.com/googlemaps/google-maps-services-python)
+- [pytest](https://docs.pytest.org/en/latest/)
+- [Uvicorn](https://www.uvicorn.org/)
 
 ## API Documentation
 
