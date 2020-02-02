@@ -16,7 +16,9 @@
 
    `pip install -r requirements.txt`
 
-4. Go to 'app' folder in the project directory
+4. Go to folder 'app' in the project directory
+
+   `cd app`
 
 5. Run app in local environment:
 
@@ -32,7 +34,7 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 1. Make sure the app is running in local environment
 
-2. Go to 'app' folder in the project directory
+2. Go to folder 'app' in the project directory
 
 3. Run tests:
 
