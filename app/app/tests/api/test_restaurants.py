@@ -1,30 +1,42 @@
-import requests
+import random
 
+from starlette.testclient import TestClient
+
+from main import app
 from app.utils.googlemaps import get_distance
 
-RESTAURANTS_STR = f"http://127.0.0.1:8000/api/restaurants"
-
+client = TestClient(app)
+RESTAURANTS_STR = "/api/restaurants"
+RESTAURANTS_SEARCH_STR = f"{RESTAURANTS_STR}/search"
 
 def test_search():
     q_lat = 60.17045
     q_lon = 24.93147
 
-    r = requests.get(
-        f"{RESTAURANTS_STR}/search/?q=sushi&lat={q_lat}&lon={q_lon}"
+    response = client.get(
+        f"{RESTAURANTS_SEARCH_STR}/?q=sushi&lat={q_lat}&lon={q_lon}"
     )
 
-    data = r.json()
+    data = response.json()
+    random_restaurant = random.choice(data)
+    lon, lat = random_restaurant["location"]
 
-    assert r.status_code == 200
+    assert response.status_code == 200
     assert len(data) > 0
-    for item in data:
-        lon, lat = item["location"]
-        assert 0 < get_distance((q_lat, q_lon), (lat, lon)) < 3
+    assert 0 < get_distance((q_lat, q_lon), (lat, lon)) < 3
 
-
-def test_search_fail():
-    r = requests.get(
-        f"{RESTAURANTS_STR}/search/?lat=test"
+    response = client.get(
+        f"{RESTAURANTS_SEARCH_STR}/?lat=fail&lon={q_lon}"
     )
 
-    assert r.status_code == 422
+    error = response.json()
+    error_detail = error["detail"]
+    
+    assert response.status_code == 422
+    assert len(error_detail) == 2
+    for item in error_detail:
+        if "q" in item["loc"]:
+            assert item["type"] == "value_error.missing"
+        if "lat" in item["loc"]:
+            assert item["type"] == "type_error.float"
+       

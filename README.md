@@ -32,11 +32,9 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 ## Testing
 
-1. Make sure the app is running in local environment
+1. Go to folder 'app' in the project directory
 
-2. Go to folder 'app' in the project directory
-
-3. Run tests:
+2. Run tests:
 
    `pytest`
 
