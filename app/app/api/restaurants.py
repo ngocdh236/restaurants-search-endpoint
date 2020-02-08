@@ -29,7 +29,7 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
         path='restaurants.json')["restaurants"]
 
     results = []
-    
+
     query_strings = remove_special_characters(q).split()
 
     for restaurant in restaurants:
@@ -42,7 +42,7 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
             for c_string in compare_strings:
                 if is_string_included(q_string, c_string):
                     matched_strings += 1
-        
+
         if matched_strings > 0:
             restaurant_lon, restaurant_lat = restaurant["location"]
             distance = get_distance(
@@ -54,7 +54,7 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
                     "distance": round(distance, 1),
                     "matched_strings": -matched_strings
                 })
-    
+
     results = sorted(results, key=operator.itemgetter(
         "distance", "matched_strings"))
 
