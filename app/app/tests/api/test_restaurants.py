@@ -10,11 +10,12 @@ RESTAURANTS_STR = "/api/restaurants"
 RESTAURANTS_SEARCH_STR = f"{RESTAURANTS_STR}/search"
 
 def test_search():
+    q = "Hanko sushi"
     q_lat = 60.17045
     q_lon = 24.93147
 
     response = client.get(
-        f"{RESTAURANTS_SEARCH_STR}/?q=sushi&lat={q_lat}&lon={q_lon}"
+        f"{RESTAURANTS_SEARCH_STR}/?q={q}&lat={q_lat}&lon={q_lon}"
     )
 
     data = response.json()
@@ -24,7 +25,7 @@ def test_search():
     assert response.status_code == 200
     assert len(data) > 0
     assert 0 < get_distance((q_lat, q_lon), (lat, lon)) < 3
-
+    
     response = client.get(
         f"{RESTAURANTS_SEARCH_STR}/?lat=fail&lon={q_lon}"
     )

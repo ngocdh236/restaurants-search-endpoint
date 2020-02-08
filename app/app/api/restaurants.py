@@ -5,7 +5,7 @@ from fastapi import APIRouter, Query
 
 from app.utils.file import get_data_from_json_file
 from app.utils.googlemaps import get_distance
-from app.utils.string import is_string_included
+from app.utils.string import remove_special_characters, is_string_included
 
 router = APIRouter()
 
@@ -29,7 +29,8 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
         path='restaurants.json')["restaurants"]
 
     results = []
-    query_strings = q.split()
+    
+    query_strings = remove_special_characters(q).split()
 
     for restaurant in restaurants:
         compare_strings = [restaurant["name"], restaurant["description"]] \
@@ -41,7 +42,7 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
             for c_string in compare_strings:
                 if is_string_included(q_string, c_string):
                     matched_strings += 1
-
+        
         if matched_strings > 0:
             restaurant_lon, restaurant_lat = restaurant["location"]
             distance = get_distance(
@@ -53,8 +54,8 @@ def search(lat: float, lon: float, q: str = Query(..., min_length=1)):
                     "distance": round(distance, 1),
                     "matched_strings": -matched_strings
                 })
-
+    
     results = sorted(results, key=operator.itemgetter(
-        "matched_strings", "distance"))
+        "distance", "matched_strings"))
 
     return [result["restaurant"]for result in results]
