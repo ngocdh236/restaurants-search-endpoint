@@ -8,7 +8,9 @@
 
 2. Activate the virtual environment:
 
-   `source venv/bin/activate`
+   On UNIX-like: `source venv/bin/activate`
+   
+   On Windows: `venv\Scripts\activate.bat`
 
 3. Install dependencies:
 
