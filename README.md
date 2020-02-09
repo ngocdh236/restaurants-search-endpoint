@@ -32,11 +32,19 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 ## Testing
 
-1. Make sure the virtual environment is running
+1. Make sure the virtual environment is running and the dependencies are installed
 
 2. Go to folder 'app' in the project directory
 
 3. Run tests:
+
+   If you want to run tests right after the virtual environment is created, you need to run:
+
+   `python -m pytest`
+
+   (path to pytest is not set yet)
+
+   From the second time activating the virtual environment on, you can run:
 
    `pytest`
 
