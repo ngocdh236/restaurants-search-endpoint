@@ -1,5 +1,3 @@
-import random
-
 from starlette.testclient import TestClient
 
 from app.utils.googlemaps import get_distance
@@ -20,12 +18,12 @@ def test_search():
     )
 
     data = response.json()
-    random_restaurant = random.choice(data)
-    lon, lat = random_restaurant["location"]
 
     assert response.status_code == 200
     assert len(data) > 0
-    assert 0 < get_distance((q_lat, q_lon), (lat, lon)) < 3
+    for item in data:
+        lon, lat = item["location"]
+        assert 0 < get_distance((q_lat, q_lon), (lat, lon)) < 3
 
     response = client.get(
         f"{RESTAURANTS_SEARCH_STR}/?lat=fail&lon={q_lon}"

@@ -1,0 +1,12 @@
+{
+  "python.pythonPath": "venv/bin/python",
+  "python.linting.pylintEnabled": true,
+  "python.linting.pycodestyleEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": ["--enable=W0614"],
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  }
+}
