@@ -2,8 +2,6 @@
 
 ## Installation
 
-(Please skip step 1 and 3 if project directory already contains folder 'venv')
-
 1. Go to the project directory, create a virtual environment name 'venv':
 
    `python3 -m venv venv`
@@ -32,9 +30,11 @@ http://127.0.0.1:8000/api/restaurants/search/?q=sushi&lat=60.17045&lon=24.93147
 
 ## Testing
 
-1. Go to folder 'app' in the project directory
+1. Make sure the virtual environment is running
 
-2. Run tests:
+2. Go to folder 'app' in the project directory
+
+3. Run tests:
 
    `pytest`
 

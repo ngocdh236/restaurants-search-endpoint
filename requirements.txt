@@ -1,5 +1,5 @@
-fastapi
-googlemaps
-pytest
-uvicorn
+fastapi==0.48.0
+googlemaps==4.1.0
+pytest==5.3.5
+uvicorn==0.11.2
 
